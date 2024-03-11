@@ -4,6 +4,6 @@
   vars_files:
      - all.yml
   tasks:
-  - name: Displaying a message
-    ansible.builtin.debug:
-    msg: "{{ message }}"
+   - name: Displaying a message
+     debug:
+     msg: "{{ message }}"
