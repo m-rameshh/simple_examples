@@ -1,0 +1,13 @@
+---
+- name: Creation of new user
+  hosts: all
+  tasks: 
+  - name: Creating user john
+    user:
+      name: john
+      password: 123
+      comment: "John David"
+      shell: /bin/bash
+      group: apache
+      createhome: true
+      home: /home/john
