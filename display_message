@@ -1,1 +1,7 @@
--
+---
+- name: Display a message
+- hosts: all
+- tasks:
+  - name: Displaying a message
+    ansible.builtin.debug:
+    msg: "{{ message }}"
