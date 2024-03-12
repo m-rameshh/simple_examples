@@ -4,7 +4,7 @@
   vars_files:
     - password.yml
   tasks:
-    - name: Creating user john
+    - name: Creating user
       ansible.builtin.user:
         name: "{{ username }}"
         password: "{{ password }}"
