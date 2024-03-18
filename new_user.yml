@@ -1,6 +1,6 @@
 ---
 - name: Creation of new user
-  hosts: localhost
+  hosts: all
   vars_files:
     - password.yml
   tasks:
