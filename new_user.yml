@@ -6,9 +6,9 @@
   tasks:
     - name: Creating user
       ansible.builtin.user:
-        name: "{{ username }}"
-        password: "{{ password }}"
+        name: manasa
+        password: 1234
         comment: "Main user"
         shell: /bin/bash
         createhome: true
-        home: /home/chutki
+        home: /home/manasa
