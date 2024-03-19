@@ -2,7 +2,7 @@
 - name: Creation of new user
   hosts: all
   vars_files:
-    - pp.yml
+    - password.yml
   tasks:
     - name: Creating user
       ansible.builtin.user:
