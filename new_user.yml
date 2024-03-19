@@ -8,7 +8,7 @@
       ansible.builtin.user:
         name: "{{ username }}"
         password: "{{ '{{password}}' | password_hash('sha512') }}"
-        comment: "Main user"
+        comment: "Sunny"
         shell: /bin/sh
         createhome: true
         home: /home/sunny
