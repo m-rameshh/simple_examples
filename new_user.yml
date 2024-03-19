@@ -11,4 +11,4 @@
         comment: "Sunny"
         shell: /bin/sh
         createhome: true
-        home: /home/rocky
+        home: /home/yash
