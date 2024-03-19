@@ -11,4 +11,4 @@
         comment: "Main user"
         shell: /bin/sh
         createhome: true
-        home: /home/vishal
+        home: /home/sunny
