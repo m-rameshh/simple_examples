@@ -1,0 +1,25 @@
+---
+- name: user in group 1 using vars
+  hosts: group1
+  vars:
+    
+  tasks:
+    - name: Creating user with vars
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ '{{password}}' | password_hash('sha512') }}"
+        comment: "madhu"
+        shell: /bin/sh
+        createhome: true
+        home: /home/madhu
+- name : User in group 2 without vars
+  hosts: group2
+  tasks:
+    - name: Creating user without vars
+      ansible.builtin.user:
+        name: kousu
+        password: "'1234' | password_hash('sha512')"
+        comment: "kousu"
+        shell: /bin/sh
+        createhome: true
+        home: /home/kousu
