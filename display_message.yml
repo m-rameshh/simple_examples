@@ -1,8 +1,6 @@
 ---
 - name: Display a message
   hosts: all
-  vars_files:
-     - all.yml
   tasks:
    - name: Displaying a message
      debug:
