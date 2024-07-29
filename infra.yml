@@ -1,0 +1,22 @@
+---
+- name: Org Configuration as Code
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  collections: infra.controller_configuration
+
+  pre_tasks:
+    - name: Include project vars
+      ansible.builtin.include_vars:
+        #dir: "{{ project_dir }}/{{ casc_project_folder }}"
+        dir: ./yaml
+
+  roles:
+    - {role: infra.controller_configuration.credentials, when: controller_credentials is defined}
+    - {role: infra.controller_configuration.credential_input_sources, when: credential_input_sources is defined}
+    - {role: infra.controller_configuration.projects, when: projects is defined}
+    - {role: infra.controller_configuration.inventories, when: inventoriesis defined}
+    - {role: infra.controller_configuration.inventory_sources, when: inventory_sources is defined}
+    - {role: infra.controller_configuration.job_templates, when: job_templatesis defined}
+    - {role: infra.controller_configuration.workflow_job_templates, when: workflow_job_templates is defined}
+    - {role: infra.controller_configuration.notification_templates, when: notification_templates is defined}
