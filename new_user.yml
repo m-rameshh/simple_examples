@@ -1,6 +1,7 @@
 ---
 - name: Creation of new user
   hosts: all
+  gather_facts: no
   vars_files:
     - password.yml
   tasks:
