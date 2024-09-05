@@ -1,8 +1,8 @@
 ---
 - name: Display a message
   hosts: all
-  vars_files:
-    - message
+  vars:
+    message: Drink lots of water
   tasks:
      - name: Displaying a message
        debug:
