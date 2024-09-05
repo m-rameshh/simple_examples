@@ -13,3 +13,4 @@
    - name: Displaying a message
      debug:
       msg: "{{ message3 }}"
+     no_log: True
