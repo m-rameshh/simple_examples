@@ -1,9 +1,9 @@
 ---
 - name: Display a message
   hosts: all
-  tasks:
   vars_files:
-   - message
+    - message
+  tasks:
      - name: Displaying a message
        debug:
        msg: "{{ message }}"
