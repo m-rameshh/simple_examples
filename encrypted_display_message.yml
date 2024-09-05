@@ -1,0 +1,15 @@
+---
+- name: Display a message
+  hosts: all 
+  vars_files:
+      - message_file
+  tasks:
+   - name: Displaying a message
+     debug:
+      msg: "{{ message1 }}"
+   - name: Displaying a message
+     debug:
+      msg: "{{ message2 }}"
+   - name: Displaying a message
+     debug:
+      msg: "{{ message3 }}"
