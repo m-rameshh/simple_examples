@@ -2,6 +2,8 @@
 - name: Display a message
   hosts: all
   tasks:
+  vars_file:
+    - message
    - name: Displaying a message
      debug:
      msg: "{{ message }}"
