@@ -6,4 +6,4 @@
   tasks:
      - name: Displaying a message
        debug:
-       msg: "{{ message }}"
+         msg: "{{ message }}"
