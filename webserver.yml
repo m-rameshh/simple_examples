@@ -1,0 +1,60 @@
+---
+- name: Configure webserver with message
+  hosts: all
+  become: true
+  vars:
+    # default; overridden by survey prompt
+    web_message: "Hello from Ansible Automation Platform"
+    # choose engine via inventory var or prompt (optional)
+    web_engine: "apache"   # allowed: "apache" or "nginx"
+  tasks:
+    - name: Ensure packages present (RHEL)
+      when: ansible_facts.os_family == "RedHat"
+      vars:
+        apache_pkg: httpd
+        nginx_pkg: nginx
+      package:
+        name: "{{ apache_pkg if web_engine == 'apache' else nginx_pkg }}"
+        state: present
+
+    - name: Ensure packages present (Debian)
+      when: ansible_facts.os_family == "Debian"
+      vars:
+        apache_pkg: apache2
+        nginx_pkg: nginx
+      package:
+        name: "{{ apache_pkg if web_engine == 'apache' else nginx_pkg }}"
+        state: present
+        update_cache: true
+
+    - name: Enable and start service
+      vars:
+        apache_svc: "{{ 'httpd' if ansible_facts.os_family == 'RedHat' else 'apache2' }}"
+        nginx_svc: nginx
+        svc_name: "{{ apache_svc if web_engine == 'apache' else nginx_svc }}"
+      service:
+        name: "{{ svc_name }}"
+        state: started
+        enabled: true
+
+    - name: Deploy default index page (Apache)
+      when: web_engine == "apache"
+      vars:
+        docroot: "{{ '/var/www/html' if ansible_facts.os_family == 'RedHat' else '/var/www/html' }}"
+      copy:
+        dest: "{{ docroot }}/index.html"
+        content: "{{ web_message }}\n"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Deploy default index page (nginx)
+      when: web_engine == "nginx"
+      vars:
+        docroot: "{{ '/usr/share/nginx/html' if ansible_facts.os_family == 'RedHat' else '/var/www/html' }}"
+      copy:
+        dest: "{{ docroot }}/index.html"
+        content: "{{ web_message }}\n"
+        owner: root
+        group: root
+        mode: '0644'
